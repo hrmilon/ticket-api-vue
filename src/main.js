@@ -1,5 +1,5 @@
 import './assets/main.css'
-import { apiServices } from './components/tickets/ApiServices'
+import { apiServices } from './services/ApiServices'
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
 

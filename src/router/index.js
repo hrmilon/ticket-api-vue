@@ -10,6 +10,7 @@ const router = createRouter({
       path: '/',
       name: 'home',
       component: HomeView,
+      meta: { requiresAuth: true }
     },
     {
       path: '/login',
@@ -20,13 +21,36 @@ const router = createRouter({
       path: '/tickets',
       name: 'tickets',
       component: TicketVue,
+      meta: {
+        requiresAuth: true,
+      }
     },
     {
       path: '/dashboard',
       name: 'dashboard',
       component: () => import('../views/DashboardVue.vue'),
+      meta: {
+        requiresAuth: true,
+      }
     },
   ],
 })
+
+// router.beforeEach((to, from, next) => {
+//   const authStore = useAuthStore();
+//   if (to.meta.requiresAuth && !authStore.token) {
+//     next('/login');  // Redirect if not authenticated
+//   } else {
+//     next();
+//   }
+// });
+
+router.beforeEach((to, from, next) => {
+  if (to.meta.requiresAuth) {
+    next("login");
+  } else {
+    next();
+  }
+});
 
 export default router

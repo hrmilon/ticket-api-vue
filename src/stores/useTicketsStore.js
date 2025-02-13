@@ -1,5 +1,5 @@
 import { defineStore } from "pinia";
-import { apiServices } from "@/components/tickets/ApiServices";
+import { apiServices } from "@/services/ApiServices";
 
 export let useTicketsStore = defineStore('ticket-pls', {
   state: () => ({

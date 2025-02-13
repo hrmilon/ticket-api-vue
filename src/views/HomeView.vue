@@ -5,9 +5,9 @@ import { computed, onMounted } from 'vue';
 
 let ticketsStore = useTicketsStore();
 
-onMounted(() => {
-  ticketsStore.initialize();
-});
+// onMounted(() => {
+//   ticketsStore.initialize();
+// });
 
 </script>
 
