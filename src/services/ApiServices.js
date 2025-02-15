@@ -9,10 +9,15 @@ class ApiServices {
   constructor() {
     this.axiosInstance.interceptors.request.use(function (config) {
       const token = localStorage.getItem('token');
+      if (!token) {
+        return config;
+      }
+
+      console.log(token);
       config.headers.Authorization = `Bearer ${token}`;
       return config;
     }, function (error) {
-      return Promise.reject(error, "has occurred during request");
+      return Promise.reject(error);
     });
 
     //error response
@@ -20,7 +25,7 @@ class ApiServices {
       // console.log(response.data.errors);
       return response.data;
     }, function (error) {
-      return Promise.reject(error);
+      return Promise.reject(error.response.data);
     });
   }
 

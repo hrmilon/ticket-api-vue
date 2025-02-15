@@ -1,3 +1,3 @@
 # movie-frontend
-- api services is integreted with login endpoint with laravel
-- getting response clearly
+- implemented basic login guards
+- focused button hover added

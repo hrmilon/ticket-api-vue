@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import LoginVue from '@/views/LoginVue.vue'
 import TicketVue from '@/views/TicketVue.vue'
+import { useLoginStore } from '@/stores/useLoginStore'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -36,18 +37,13 @@ const router = createRouter({
   ],
 })
 
-// router.beforeEach((to, from, next) => {
-//   const authStore = useAuthStore();
-//   if (to.meta.requiresAuth && !authStore.token) {
-//     next('/login');  // Redirect if not authenticated
-//   } else {
-//     next();
-//   }
-// });
-
 router.beforeEach((to, from, next) => {
-  if (to.meta.requiresAuth) {
-    next("login");
+  const authStore = useLoginStore();
+  if (!authStore.token && to.name !== 'login') {
+    console.log("User not authenticated, redirecting to login");
+    next({
+      path: 'login',
+    });  // Redirect if not authenticated
   } else {
     next();
   }
