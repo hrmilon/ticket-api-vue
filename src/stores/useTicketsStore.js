@@ -5,7 +5,8 @@ export let useTicketsStore = defineStore('ticket-pls', {
   state: () => ({
     tickets: [],
     loading: false,
-    hateos: []
+    hateos: [],
+    totalTicket: null
   }),
 
   actions: {
@@ -16,7 +17,9 @@ export let useTicketsStore = defineStore('ticket-pls', {
 
     async fetchTickets() {
       let ticket = await apiServices.tickets.getTickets();
-      // console.log(ticket.links);
+      this.$state.totalTicket = ticket.meta.total
+      // console.log(ticket.meta.total);
+
       this.hateos = ticket.links;
       return this.tickets = ticket.data
     },
@@ -29,6 +32,10 @@ export let useTicketsStore = defineStore('ticket-pls', {
 
     getHateos(state) {
       return state.hateos;
+    },
+
+    getTotalTicket(state) {
+      return state.totalTicket;
     }
   }
 })

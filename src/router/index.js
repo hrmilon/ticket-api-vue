@@ -3,6 +3,7 @@ import HomeView from '../views/HomeView.vue'
 import LoginVue from '@/views/LoginVue.vue'
 import TicketVue from '@/views/TicketVue.vue'
 import { useLoginStore } from '@/stores/useLoginStore'
+import DetailedTicket from '@/views/DetailedTicket.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -24,7 +25,13 @@ const router = createRouter({
       component: TicketVue,
       meta: {
         requiresAuth: true,
-      }
+      },
+      children: [
+        {
+          path: ':id',
+          component: DetailedTicket,
+        }
+      ]
     },
     {
       path: '/dashboard',
