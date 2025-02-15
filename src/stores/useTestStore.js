@@ -1,11 +1,10 @@
 import { defineStore } from "pinia";
 import { apiServices } from "@/services/ApiServices";
 
-export let useTicketsStore = defineStore('ticket-pls', {
+export let useTestStore = defineStore('test', {
   state: () => ({
     tickets: [],
-    loading: false,
-    hateos: []
+    loading: false
   }),
 
   actions: {
@@ -15,20 +14,17 @@ export let useTicketsStore = defineStore('ticket-pls', {
     },
 
     async fetchTickets() {
-      let ticket = await apiServices.tickets.getTickets();
-      // console.log(ticket.links);
-      this.hateos = ticket.links;
+      let ticket = await apiServices.test.get();
       return this.tickets = ticket.data
     },
 
+    check() {
+      return this.fetchTickets();
+    }
   },
   getters: {
     getTickets(state) {
       return state.tickets;
-    },
-
-    getHateos(state) {
-      return state.hateos;
     }
   }
 })

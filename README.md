@@ -1,3 +1,5 @@
 # movie-frontend
-- implemented basic login guards
-- focused button hover added
+- table is working fine
+- problem is it is able to print 15 res
+- so we have to implement pagination
+????????????

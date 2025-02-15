@@ -1,9 +1,10 @@
 <!-- eslint-disable no-unused-vars -->
 <script setup>
-import { useTicketsStore } from '@/stores/useTicketsStore';
+
+import { useTestStore } from '@/stores/useTestStore';
 import { computed, onMounted } from 'vue';
 
-let ticketsStore = useTicketsStore();
+let ticketsStore = useTestStore();
 
 // onMounted(() => {
 //   ticketsStore.initialize();

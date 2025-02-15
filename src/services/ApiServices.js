@@ -13,7 +13,7 @@ class ApiServices {
         return config;
       }
 
-      console.log(token);
+      // console.log(token);
       config.headers.Authorization = `Bearer ${token}`;
       return config;
     }, function (error) {
@@ -41,7 +41,7 @@ class ApiServices {
   }
 
   tickets = {
-    getTickets: () => this.axiosInstance.get('/tickets'),
+    getTickets: (page) => this.axiosInstance.get('/api/v1/tickets?page=' + page),
     getSpecificTicket: (id) => this.axiosInstance.get(`/tickets/${id}`),
     deleteTicket: (id) => this.axiosInstance.delete(`/tickets/${id}`),
     addTicket: (payload) => this.axiosInstance.post('/tickets', payload),
