@@ -10,9 +10,9 @@ export let useTicketsStore = defineStore('ticket-pls', {
   }),
 
   actions: {
-    async initialize() {
+    async initialize(page) {
       if (this.tickets.length) return;
-      await this.fetchTickets();
+      await this.fetchTickets(page);
     },
 
     async fetchTickets() {

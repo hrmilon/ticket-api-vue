@@ -3,6 +3,7 @@ import { useTicketsStore } from '@/stores/useTicketsStore';
 import Header from './Header.vue';
 import Table from './Table.vue';
 import { onMounted } from 'vue';
+import { RouterView } from 'vue-router';
 let ticketStore = useTicketsStore()
 
 // onMounted(() => {
@@ -12,12 +13,12 @@ let ticketStore = useTicketsStore()
 </script>
 
 <template>
-  <router-view />
+  <RouterView />
 
-<!-- {{ $route.query }} -->
+  <!-- {{ $route.query }} -->
   <div class="bg-gray-900 p-8">
     <div class="max-w-4xl mx-auto">
-      <Header info="Ticket Info" :store="ticketStore"/>
+      <Header info="Ticket Info" :store="ticketStore" />
       <Table />
     </div>
   </div>

@@ -1,5 +1,3 @@
 #ticket-frontend
-- visual for sorting
-- infinite scroll
-- lazy loading
-- each view
+✔ - load more observer
+❌ - add functionlity of load more
