@@ -15,13 +15,20 @@ export let useTicketsStore = defineStore('ticket-pls', {
       await this.fetchTickets(page);
     },
 
-    async fetchTickets() {
-      let ticket = await apiServices.tickets.getTickets();
+    async fetchTickets(page) {
+      let ticket = await apiServices.tickets.getTickets(page);
+      //return total tickets
       this.$state.totalTicket = ticket.meta.total
-      // console.log(ticket.meta.total);
+      //assigning fetched ticket to state=>ticket
+      // this.tickets = ticket.data
 
-      this.hateos = ticket.links;
-      return this.tickets = ticket.data
+      // const existingIds = new Set(this.tickets.map(t => t.id));
+      // const newTickets = ticket.data.filter(t => !existingIds.has(t.id));
+
+      this.tickets = [...this.tickets, ...ticket.data]
+      return this.tickets;
+      // this.hateos = ticket.links;
+      // console.log(ticket.meta.total);
     },
 
   },
@@ -30,9 +37,9 @@ export let useTicketsStore = defineStore('ticket-pls', {
       return state.tickets;
     },
 
-    getHateos(state) {
-      return state.hateos;
-    },
+    // getHateos(state) {
+    //   return state.hateos;
+    // },
 
     getTotalTicket(state) {
       return state.totalTicket;

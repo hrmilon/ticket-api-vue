@@ -1,11 +1,14 @@
 <script setup>
 import { useTicketsStore } from '@/stores/useTicketsStore';
-import { onMounted, ref } from 'vue';
+import { onMounted, ref, watch } from 'vue';
 import TableTD from './TableTD.vue';
 import TableTH from './TableTH.vue';
 let ticketStore = useTicketsStore()
 
 let more = ref(null)
+let pageCount = 2
+
+watch()
 
 onMounted(() => {
   ticketStore.initialize();
@@ -14,14 +17,14 @@ onMounted(() => {
   let callback = (entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
-        ticketStore.initialize(3)
+        ticketStore.fetchTickets(pageCount)
+        pageCount++
       }
     });
   };
 
   let observer = new IntersectionObserver(callback)
   observer.observe(more.value)
-
 
 });
 
@@ -51,7 +54,9 @@ onMounted(() => {
       </tbody>
     </table>
 
-    <div ref="more" class="block p-4 bg-amber-400 items-center text-black">Load More</div>
+    <div ref="more" class="block p-4 bg-gray-800 items-center text-whit font-bold">
+      Load More
+    </div>
 
   </div>
 </template>
