@@ -6,7 +6,8 @@ export let useTicketsStore = defineStore('ticket-pls', {
     tickets: [],
     loading: false,
     hateos: [],
-    totalTicket: null
+    totalTicket: null,
+    pageTrack: 1
   }),
 
   actions: {
@@ -30,6 +31,11 @@ export let useTicketsStore = defineStore('ticket-pls', {
       // this.hateos = ticket.links;
       // console.log(ticket.meta.total);
     },
+
+    async fetchTicketsQueryString(param) {
+      let tickets = await apiServices.tickets.getTicketsFilter(param)
+      return this.$state.tickets = tickets.data
+    }
 
   },
   getters: {
