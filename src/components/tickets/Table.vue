@@ -56,7 +56,7 @@ onMounted(() => {
         </tr>
       </tbody>
       <tbody class="flex items-center justify-center p-10" v-else>
-        <div>There is no issued Ticket</div>
+        <tr>There is no issued Ticket</tr>
       </tbody>
     </table>
 
