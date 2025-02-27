@@ -1,13 +1,14 @@
 <!-- eslint-disable no-unused-vars -->
 <script setup>
+
+import { useTestStore } from '@/stores/useTestStore';
 import { useTicketsStore } from '@/stores/useTicketsStore';
-import { computed, onMounted } from 'vue';
+import { compile, computed, onMounted, watch } from 'vue';
 
 let ticketsStore = useTicketsStore();
+let qparam = computed(() => ticketsStore.queryParams)
+// console.log(qparam.value);
 
-onMounted(() => {
-  ticketsStore.initialize();
-});
 
 </script>
 

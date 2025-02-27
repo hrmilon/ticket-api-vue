@@ -1,6 +1,10 @@
-# movie-frontend
-- minimal ui for starting off
+### ticket-frontend
+- filtering basic
+- only 15 instance is present
 
-- navigation bar
-- homepage has the lorem api txt
-- tickets has the table
+Problem
+- fetch more tickets if exist while filtering
+- solution : add "page=n" after query string 
+- if qs exist in `filter.vue`
+
+### Filtering works

@@ -8,8 +8,6 @@ let dropDown = ref(false)
 
 let showDropdown = () => {
     dropDown.value = !dropDown.value
-    console.log(dropDown.value);
-
 }
 
 </script>
@@ -48,13 +46,11 @@ let showDropdown = () => {
                 <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
                     <div class="flex shrink-0 items-center">
                         <RouterLink to="/">
-                            <img class="h-10 w-auto"
-                                src="@/assets/support-ticket.png"
-                                alt="Your Company">
+                            <img class="h-10 w-auto" src="@/assets/support-ticket.png" alt="Your Company">
                         </RouterLink>
                     </div>
                     <div class="hidden sm:ml-6 sm:block">
-                <NavLink />
+                        <NavLink />
                     </div>
                 </div>
                 <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
@@ -77,7 +73,6 @@ let showDropdown = () => {
                 </div>
             </div>
         </div>
-
     </nav>
 
 </template>
