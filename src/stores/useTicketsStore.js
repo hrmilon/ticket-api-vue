@@ -7,7 +7,9 @@ export let useTicketsStore = defineStore('ticket-pls', {
     loading: false,
     hateos: [],
     totalTicket: null,
-    pageTrack: 1
+    pageTrack: 1,
+    queryParams: '',
+    filterTrack: 1
   }),
 
   actions: {
@@ -16,39 +18,62 @@ export let useTicketsStore = defineStore('ticket-pls', {
       await this.fetchTickets(page);
     },
 
-    async fetchTickets(page) {
-      let ticket = await apiServices.tickets.getTickets(page);
-      //return total tickets
-      this.$state.totalTicket = ticket.meta.total
-      //assigning fetched ticket to state=>ticket
-      // this.tickets = ticket.data
+    async fetchTickets() {
+      if (this.queryParams) {
+        this.makeBlank()
+        let ticket = await apiServices.tickets.getTickets(this.filterTrack + `&${this.queryParams}`);
 
-      // const existingIds = new Set(this.tickets.map(t => t.id));
-      // const newTickets = ticket.data.filter(t => !existingIds.has(t.id));
+        this.$state.tickets = [...this.tickets, ...ticket.data]
+        this.filterTrack++
+        return this.tickets;
+      }
 
-      this.tickets = [...this.tickets, ...ticket.data]
-      return this.tickets;
-      // this.hateos = ticket.links;
-      // console.log(ticket.meta.total);
+      else {
+        let ticket = await apiServices.tickets.getTickets(this.pageTrack);
+        //return total tickets
+        this.$state.totalTicket = ticket.meta.total
+
+        this.tickets = [...this.tickets, ...ticket.data]
+        this.pageTrack++
+        return this.tickets;
+      }
+
+      // {
+      //   let tickets = await apiServices.tickets.getTicketsFilter(param)
+      //   return this.$state.tickets = tickets.data
+      // }
     },
 
-    async fetchTicketsQueryString(param) {
+    async fetchTicketsQueryString(param, pageCount) {
+
+      this.$state.queryParams = param;
+
       let tickets = await apiServices.tickets.getTicketsFilter(param)
       return this.$state.tickets = tickets.data
-    }
 
+      // filter[status]=X?page=2
+      // let paramwithPage = `${param}?page=${pageCount}`
+      // let tickets = await apiServices.tickets.getTicketsFilter(paramwithPage)
+      // return this.$state.tickets = tickets.data
+
+    },
+
+    makeBlank() {
+      this.tickets = [],
+        this.pageTrack = 1
+    }
   },
   getters: {
     getTickets(state) {
       return state.tickets;
     },
 
-    // getHateos(state) {
-    //   return state.hateos;
-    // },
-
     getTotalTicket(state) {
       return state.totalTicket;
+    },
+
+    getQueryString(state) {
+      return state.queryParams
     }
   }
 })

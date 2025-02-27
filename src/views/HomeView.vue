@@ -2,13 +2,13 @@
 <script setup>
 
 import { useTestStore } from '@/stores/useTestStore';
-import { computed, onMounted } from 'vue';
+import { useTicketsStore } from '@/stores/useTicketsStore';
+import { compile, computed, onMounted, watch } from 'vue';
 
-let ticketsStore = useTestStore();
+let ticketsStore = useTicketsStore();
+let qparam = computed(() => ticketsStore.queryParams)
+// console.log(qparam.value);
 
-// onMounted(() => {
-//   ticketsStore.initialize();
-// });
 
 </script>
 

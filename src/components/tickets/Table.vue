@@ -7,25 +7,23 @@ import Filter from './Filter.vue';
 let ticketStore = useTicketsStore()
 
 let more = ref(null)
-let pageCount = 2 //start from second page
+// let pageCount = 2 //start from second page
 let showFilter = ref(false)
 
 onMounted(() => {
-  ticketStore.initialize();
+  // ticketStore.initialize();
 
   //implementing IntersectionObserver
   let callback = (entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
-        ticketStore.fetchTickets(pageCount)
-        pageCount++
+        ticketStore.fetchTickets() //store should handle incrementing
       }
     });
   };
 
   let observer = new IntersectionObserver(callback)
   observer.observe(more.value)
-
 });
 
 

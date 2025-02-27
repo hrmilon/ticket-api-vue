@@ -14,7 +14,6 @@ const query = computed(() => route.query);
 function acceptUrlParam(key, value) {
   let paramsKey = `${key[0]}`
   let paramsValue = `${key[1]}`
-console.log(key);
 
   let mapping = {
     ticketStatus: {
@@ -29,9 +28,9 @@ console.log(key);
   let statusFromUrl = mapping.ticketStatus.status
   let valueFromUrl = mapping.ticketStatus.completed
   let combinedQueryStringApi = `${statusFromUrl}${valueFromUrl}`
-  console.log(combinedQueryStringApi);
 
-  ticketStore.fetchTicketsQueryString(combinedQueryStringApi)
+  // ticketStore.fetchTickets(combinedQueryStringApi)
+  ticketStore.queryParams = combinedQueryStringApi;
 };
 
 //watch if any params is caught by dropdown selection

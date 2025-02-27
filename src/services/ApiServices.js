@@ -42,6 +42,7 @@ class ApiServices {
   tickets = {
     getTickets: (page) => this.axiosInstance.get('/api/v1/tickets?page=' + page),
     getTicketsFilter: (param) => this.axiosInstance.get('/api/v1/tickets?' + param),
+    
     getSpecificTicket: (id) => this.axiosInstance.get(`/tickets/${id}`),
     deleteTicket: (id) => this.axiosInstance.delete(`/tickets/${id}`),
     addTicket: (payload) => this.axiosInstance.post('/tickets', payload),
