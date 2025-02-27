@@ -1,10 +1,22 @@
+#### Api to run this app
+- `https://github.com/hrmilon/ticket-api-laravel`
+
 ### ticket-frontend
-- filtering basic
-- only 15 instance is present
+- `apiService` is the main indexing point to list of api's
+-  which serves the best practice for api consuming and sending requests to the server
 
-Problem
-- fetch more tickets if exist while filtering
-- solution : add "page=n" after query string 
-- if qs exist in `filter.vue`
+in Pinia
+- is responsible for handling their store
+- no cluttering with api endpoints
 
-### Filtering works
+- `/tickets` is the main and only functional page
+- which has filtering as well 
+
+
+#### Installation
+- Clone
+- npm run install
+- npm run dev
+
+for Api's 
+- `services/apiServices.js` is the configurable to endpoints
